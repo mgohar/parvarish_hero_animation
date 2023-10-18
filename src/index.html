@@ -8,7 +8,7 @@
   <style>
     body{
       margin: 0px;
-      overflow: hidden;
+      overflow-x: hidden;
     }
     .bz-circle-container{
       height: 100vh;
@@ -39,8 +39,21 @@
       object-fit: cover;
     }
     .bz-hero-section{
+      height: 100vh;
+
       position: absolute;
       overflow: hidden;
+      overflow-x: hidden;
+    }
+    .draw{
+      position: absolute;
+      top: 0px;
+    }
+    @media (max-width: 576px) {
+      .bz-circle{
+        height: 60px;
+        width: 60px;
+      }
     }
   </style>
 </head>
@@ -49,15 +62,16 @@
   </body> -->
 
 <body >
-  <div class="bz-hero-section" id="next">
+  <div class="bz-hero-section" id="next" >
     <div class="bz-circle-container">
       <div class="bz-circle bz-circle-0">
         <img class="bz-circle-image bz-circle-image-0" src="https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_2.png"/>
       </div>
     </div>
       
-    <canvas class="draw"></canvas>
+    <canvas  class="draw"></canvas>
   </div>
+  <div style="background-color: red;height: 500vh"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script>
    

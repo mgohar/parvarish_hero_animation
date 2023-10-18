@@ -10,6 +10,7 @@ const doctorCloud4Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_a
 
 const gs = gsap.timeline();
 let devicePrefex = 'bg_';
+let FOV = 48;
 applyStylesBasedOnScreenSize();
 
 
@@ -56,7 +57,7 @@ const Size = {
 };
 let index = -1;
 // CAMERA
-const camera = new THREE.PerspectiveCamera(48, Size.width / Size.height);
+const camera = new THREE.PerspectiveCamera(FOV, Size.width / Size.height);
 // const camera = new THREE.OrthographicCamera(Size.width / - 2, Size.width / 2, Size.height / 2, Size.height / - 2, 1, 1000);
 
 
@@ -362,15 +363,26 @@ function loadNextImage(loader) {
       const x1 = e.clientX - container.offsetLeft - followImage.offsetWidth / 2;
       const y1 = e.clientY - container.offsetTop - followImage.offsetHeight / 2;
       imageContainer.style.transition = "all 0.2s ease";
-      circle.style.height="20px";
-      circle.style.width='20px';
-      circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      setTimeout(() => {
-        circle.style.height="200px";    
-        circle.style.width='200px';
-        circle.style.transform = `translate(${x}px, ${y}px)`;
-        
-      }, 400);
+      if(window.innerWidth <=576){
+        circle.style.height="10px";
+        circle.style.width='10px';
+        circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        setTimeout(() => {
+          circle.style.height="60px";    
+          circle.style.width='60px';
+          circle.style.transform = `translate(${x}px, ${y}px)`;
+        }, 400);
+      }else{
+        circle.style.height="20px";
+        circle.style.width='20px';
+        circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        setTimeout(() => {
+          circle.style.height="200px";    
+          circle.style.width='200px';
+          circle.style.transform = `translate(${x}px, ${y}px)`;
+        }, 400);
+      }
+      
 
       
     
@@ -438,6 +450,7 @@ function loadNextImage(loader) {
         } else {
             // Small screen (sm)
             devicePrefex="sm_";
+            FOV = 41;
             console.log('Small screen');
         }
         }
