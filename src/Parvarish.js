@@ -1,12 +1,12 @@
 import * as THREE from "three";
 
 
-const particalTexture1 = "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/star_04.png"
-const showTexture1 = "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/magic_04.png"
-const doctorCloud1Texture = "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/cloud1.png"
-const doctorCloud2Texture = "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/cloud2.png"
-const doctorCloud3Texture = "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/cloud3.png"
-const doctorCloud4Texture = "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/cloud4.png"
+const particalTexture1 = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/star_04.png"
+const showTexture1 = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/magic_04.png"
+const doctorCloud1Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud1.png"
+const doctorCloud2Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud2.png"
+const doctorCloud3Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud3.png"
+const doctorCloud4Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud4.png"
 
 const gs = gsap.timeline();
 
@@ -318,27 +318,6 @@ function animate() {
 
   
 
-  // starGroup.traverse((object) => {
-  //   console.log("INdex:",index);
-  //   if (object instanceof THREE.Mesh) {
-  //     if(starIndex % 2=== 0){
-  //       object.scale.set(Math.abs(Math.sin(elapsedTime)*1),Math.abs(Math.sin(elapsedTime)*1));
-  //     }else{
-  //       object.scale.set(Math.abs(Math.cos(elapsedTime)*1),Math.abs(Math.cos(elapsedTime)*1));
-  //     }
-      
-
-      
-  //     starIndex++
-  //   }
-  // });
-
-
-  // star1.scale.set(Math.abs(Math.sin(elapsedTime)*0.6),Math.abs(Math.sin(elapsedTime)*0.6));
-  // star2.scale.set(Math.abs(Math.cos(elapsedTime)*0.5),Math.abs(Math.cos(elapsedTime)*0.5));
-
-  // star1.scale.y= Math.sin(delta)*50;
-  // star1.scale.y= Math.sin()
   if (uniforms.u_time.value < uniforms.u_duration.value) {
     uniforms.u_time.value += delta;
   } else {
@@ -351,7 +330,7 @@ function animate() {
 const images = [];
 const loader = new THREE.TextureLoader();
 loader.setPath(
-  "https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/"
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/"
 );
 loader.wrapS = THREE.RepeatWrapping;
 loader.wrapT = THREE.RepeatWrapping;
@@ -405,43 +384,28 @@ function loadNextImage(loader) {
         case 0:
           uniforms.u_tex_1.value = images[0];
           uniforms.u_tex_2.value = images[1];
-          followImage.src = `https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_${2}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${2}.png`;
           break;
         case 1:
           uniforms.u_tex_1.value = images[1];
           uniforms.u_tex_2.value = images[2];
-          followImage.src = `https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_${3}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${3}.png`;
           break;
         case 2:
           uniforms.u_tex_1.value = images[2];
           uniforms.u_tex_2.value = images[3];
-          followImage.src = `https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_${0}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${0}.png`;
           break;
         case 3:
           uniforms.u_tex_1.value = images[3];
           uniforms.u_tex_2.value = images[0];
-          followImage.src = `https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_${1}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${1}.png`;
           index = -1;
           break;
 
         default:
           break;
       }
-
-      //   if (index == 2) {
-      //     gs.to(boxMaterial, {
-      //       duration: 1,
-      //       opacity: 0,
-      //     });
-      //     console.log("Log", index);
-      //   }
-      //   if (index == 3) {
-      //     gs.to(boxMaterial, {
-      //       duration: 1,
-      //       opacity: 1,
-      //     });
-      //     console.log("Log", index);
-      //   }
     };
 
     animate();
