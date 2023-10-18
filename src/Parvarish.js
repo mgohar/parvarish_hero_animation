@@ -9,6 +9,8 @@ const doctorCloud3Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_a
 const doctorCloud4Texture = "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud4.png"
 
 const gs = gsap.timeline();
+let devicePrefex = 'bg_';
+applyStylesBasedOnScreenSize();
 
 
 const vshader = `
@@ -330,7 +332,7 @@ function animate() {
 const images = [];
 const loader = new THREE.TextureLoader();
 loader.setPath(
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.3/src/Assets/"
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.4/src/Assets/"
 );
 loader.wrapS = THREE.RepeatWrapping;
 loader.wrapT = THREE.RepeatWrapping;
@@ -410,9 +412,36 @@ function loadNextImage(loader) {
 
     animate();
   } else {
-    loader.load(`md_${index}.png`, function (tex) {
+    loader.load(`${devicePrefex}${index}.png`, function (tex) {
       images.push(tex);
       loadNextImage(loader);
     });
   }
 }
+
+
+        // Use a switch statement to apply different styles based on screen size
+        function applyStylesBasedOnScreenSize() {
+            const windowWidth = window.innerWidth;
+
+            if (windowWidth >= 1200) {
+            devicePrefex="bg_";
+            console.log('Extra-large screen');
+        } else if (windowWidth >= 992) {
+            // Large screen (lg)
+            devicePrefex="md_";
+            console.log('Large screen');
+        } else if (windowWidth >= 576) {
+            // Medium screen (md)
+            devicePrefex="md_";
+            console.log('Medium screen');
+        } else {
+            // Small screen (sm)
+            devicePrefex="sm_";
+            console.log('Small screen');
+        }
+        }
+
+        // Call the function when the page loads and when the window is resized
+        window.addEventListener('load', applyStylesBasedOnScreenSize);
+        window.addEventListener('resize', applyStylesBasedOnScreenSize);
