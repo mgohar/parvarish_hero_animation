@@ -1,106 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1 - Introduction to shaders</title>
-  <style>
-    body{
-      margin: 0px;
-      overflow-x: hidden;
-    }
-    .bz-circle-container{
-      height: 100vh;
-      width: 100vw;
-      position: relative;
-      z-index: 999;
-      overflow: hidden;
-    }
-    .bz-circle{
-      height: 200px;
-      width: 200px;
-      overflow: hidden;
-      border-radius: 50%;
-      z-index: 99;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .bz-circle img{
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: auto;
-      left: auto;
-      right: auto;
-      bottom: auto;
-      object-fit: cover;
-    }
-    .bz-hero-section{
-      height: 100vh;
-
-      position: absolute;
-      overflow: hidden;
-      overflow-x: hidden;
-    }
-    .draw{
-      position: absolute;
-      top: 0px;
-    }
-    @media (max-width: 576px) {
-      .bz-circle{
-        height: 60px;
-        width: 60px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1 - Introduction to shaders</title>
+    <style>
+      body {
+        margin: 0px;
+        overflow-x: hidden;
       }
-    }
-  </style>
-</head>
-<!-- <body>
+      .bz-circle-container {
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        z-index: 999;
+        overflow: hidden;
+      }
+      .bz-circle-container:hover .bz-circle{
+        opacity: 1!important;
+      }
+      .bz-circle {
+        height: 200px;
+        width: 200px;
+        overflow: hidden;
+        border-radius: 50%;
+        z-index: 99;
+        position: relative;
+        display: flex;
+        opacity: 0;
+        justify-content: center;
+        align-items: center;
+        /* box-shadow: 5px 5px 5px #0000004a; */
+      }
+      .bz-circle img {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        object-fit: cover;
+      }
+      .bz-hero-section {
+        height: 100vh;
+
+        position: absolute;
+        overflow: hidden;
+        overflow-x: hidden;
+      }
+      .draw {
+        position: absolute;
+        top: 0px;
+      }
+      span.bz-circle-text {
+        z-index: 99;
+        font-size: 25px;
+        font-family: cursive;
+        font-weight: bold;
+        color: white;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+      @media (max-width: 576px) {
+        .bz-circle {
+          height: 60px;
+          width: 60px;
+        }
+        span.bz-circle-text {
+          z-index: 99;
+          font-size: 14px;
+          font-family: cursive;
+          font-weight: bold;
+          color: white;
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          white-space: nowrap;
+        }
+      }
+    </style>
+  </head>
+  <!-- <body>
     <canvas class="draw"></canvas>
   </body> -->
 
-<body >
-  <div class="bz-hero-section" id="next" >
-    <div class="bz-circle-container">
-      <div class="bz-circle bz-circle-0">
-        <img class="bz-circle-image bz-circle-image-0" src="https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_2.png"/>
+  <body>
+    <div class="bz-hero-section" id="next">
+      <div class="bz-circle-container">
+        <div class="bz-circle bz-circle-0">
+          <span class="bz-circle-text">Click Me</span>
+          <img
+            class="bz-circle-image bz-circle-image-0"
+            src="https://celestialcode.s3.us-west-2.amazonaws.com/Parvarish/RippleAnimationAssets/bg_2.png"
+          />
+        </div>
       </div>
-    </div>
-      
-    <canvas  class="draw"></canvas>
-  </div>
-  <div style="background-color: red;height: 500vh"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-  <script>
-   
-    let status = true;
-    let index = 0;
-    const container = document.querySelector('.bz-circle-container');
-    
-    const triggerStop = document.querySelector('.triggerStop');
-    
 
-    container.addEventListener('mousemove', (e) => {
+      <canvas class="draw"></canvas>
+    </div>
+    <div style="height: 200vh;background-color: red;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+      let status = true;
+      let index = 0;
+      const container = document.querySelector(".bz-circle-container");
+
+      const triggerStop = document.querySelector(".triggerStop");
+
+      container.addEventListener("mousemove", (e) => {
         const imageContainer = document.querySelector(`.bz-circle-${index}`);
         const followImage = document.querySelector(`.bz-circle-image-${index}`);
 
-        const x = e.clientX - container.offsetLeft - imageContainer.offsetWidth / 2;
-        const y = e.clientY - container.offsetTop - imageContainer.offsetHeight / 2;
-        const x1 = e.clientX - container.offsetLeft - followImage.offsetWidth / 2;
-        const y1 = e.clientY - container.offsetTop - followImage.offsetHeight / 2;
+        const x =
+          e.clientX - container.offsetLeft - imageContainer.offsetWidth / 2;
+        const y =
+          e.clientY - container.offsetTop - imageContainer.offsetHeight / 2;
+        const x1 =
+          e.clientX - container.offsetLeft - followImage.offsetWidth / 2;
+        const y1 =
+          e.clientY - container.offsetTop - followImage.offsetHeight / 2;
         // Move the image container
         imageContainer.style.transition = "all 0.2s linear";
         followImage.style.transition = "all 0.2s linear";
+        // imageContainer.style.display="flex";
         // if (status == true) {
-
-            imageContainer.style.transform = `translate(${x}px, ${y}px)`;
-            followImage.style.transform = `translate(${-x1}px, ${-y1}px)`;
+          console.log("x1:",-x1);
+          console.log("y1:",-y1);
+        imageContainer.style.transform = `translate(${x}px, ${y}px)`;
+        followImage.style.transform = `translate(${-x1}px, ${-y1}px)`;
         // }
-    });
-    
-</script>
-</body>
-
+      });
+    </script>
+  </body>
 </html>
