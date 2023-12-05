@@ -15,9 +15,10 @@ const doctorCloud4Texture =
 
 const gs = gsap.timeline();
 let devicePrefex = "bg_";
-// let FOV = 53;
+// let FOV = 53;      
 // let planeWidth = 1.779;
-let FOV = 48;
+let draw = document.querySelector(".draw");
+let FOV = parseInt(draw.getAttribute("fov"));    
 let planeWidth = 1.8;
 applyStylesBasedOnScreenSize();
 
@@ -464,9 +465,9 @@ function applyStylesBasedOnScreenSize() {
     console.log("Extra-large screen", windowWidth, windowHeight);
   } else if (windowWidth >= 992) {
     setTimeout(() => {
-      circle.style.transform = `translate(${(window.innerWidth - 200) / 2}px, ${
-        (window.innerHeight - 200) / 2
-      }px)`;
+      // circle.style.transform = `translate(${(window.innerWidth - 200) / 2}px, ${
+      //   (window.innerHeight - 200) / 2
+      // }px)`;
     }, 0);
     devicePrefex = "md_";
     console.log("Large screen", windowWidth, windowHeight);
