@@ -1,17 +1,17 @@
 import * as THREE from "three";
 
 const particalTexture1 =
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/star_04.png";
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/star_04.png";
 const showTexture1 =
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/magic_04.png";
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/magic_04.png";
 const doctorCloud1Texture =
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud1.png";
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/cloud1.png";
 const doctorCloud2Texture =
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud2.png";
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/cloud2.png";
 const doctorCloud3Texture =
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud3.png";
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/cloud3.png";
 const doctorCloud4Texture =
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/cloud4.png";
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/cloud4.png";
 
 const gs = gsap.timeline();
 let devicePrefex = "bg_";
@@ -347,7 +347,7 @@ function animate() {
 const images = [];
 const loader = new THREE.TextureLoader();
 loader.setPath(
-  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.4/src/Assets/"
+  "https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/"
 );
 loader.wrapS = THREE.RepeatWrapping;
 loader.wrapT = THREE.RepeatWrapping;
@@ -409,22 +409,22 @@ function loadNextImage(loader) {
         case 0:
           uniforms.u_tex_1.value = images[0];
           uniforms.u_tex_2.value = images[1];
-          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${2}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/bg_${2}.png`;
           break;
         case 1:
           uniforms.u_tex_1.value = images[1];
           uniforms.u_tex_2.value = images[2];
-          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${3}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/bg_${3}.png`;
           break;
         case 2:
           uniforms.u_tex_1.value = images[2];
           uniforms.u_tex_2.value = images[3];
-          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${0}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/bg_${0}.png`;
           break;
         case 3:
           uniforms.u_tex_1.value = images[3];
           uniforms.u_tex_2.value = images[0];
-          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.1/src/Assets/bg_${1}.png`;
+          followImage.src = `https://cdn.jsdelivr.net/gh/mgohar/parvarish_hero_animation@1.0.10/src/Assets/bg_${1}.png`;
           index = -1;
           break;
 
